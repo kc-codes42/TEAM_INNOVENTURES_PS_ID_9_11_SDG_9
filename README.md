@@ -1,211 +1,136 @@
-# Hackathon Template
+# Team Innoventures
 
-Production-ready full-stack hackathon boilerplate optimized for **speed**, **parallel team work**, and **zero deployment friction**.
+## Project Title
+Digital Twin for Rural Broadband Resilience
 
-<img src="https://user-images.githubusercontent.com/74038190/212747903-e9bdf048-2dc8-41f9-b973-0e72ff07bfba.gif" width="500">
-
-
----
-
-## ✨ Stack
-
-**Frontend**
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- Axios
-
-**Backend**
-- Node.js
-- Express.js
-- TypeScript
-
-**Infrastructure**
-- Supabase (Postgres, Storage)
-- Firebase (Auth / Firestore / Cloud Functions — optional)
-- Vercel (Frontend)
-- Railway (Backend)
-
-**Tooling**
-- Git + GitHub
-- VS Code
-- Windows 11
+## SDG Alignment
+**SDG 9 – Industry, Innovation and Infrastructure**  
+**Target 9.1 / 9.11:** Develop reliable, sustainable, and resilient infrastructure using digital and data-driven technologies.
 
 ---
 
-## 📁 Project Structure
-
-```
-
-.
-├── backend/
-│   ├── src/
-│   │   ├── app.ts
-│   │   ├── server.ts
-│   │   ├── routes/
-│   │   ├── controllers/
-│   │   ├── services/
-│   │   ├── middlewares/
-│   │   └── utils/
-│   ├── .env.development
-│   ├── .env.production
-│   ├── package.json
-│   └── tsconfig.json
-│
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── lib/
-│   ├── styles/
-│   ├── public/
-│   ├── .env.local
-│   ├── package.json
-│   └── tailwind.config.ts
-│
-├── services/        # Supabase / Firebase helpers or scripts
-├── docs/            # Architecture, API contracts, notes
-├── README.md
-└── .gitignore
-
-````
+## System Objective
+Predict rural broadband failure risk and recommend resilient network planning using satellite, terrain, weather, and population data.  
+The system is fully software-based, zero-cost, and uses only open datasets and free-tier tools.
 
 ---
 
-## 🧠 Architecture Principles
-
-- Frontend and backend are **fully decoupled**
-- No direct database access from frontend using privileged keys
-- Backend owns business logic and secure operations
-- Firebase is **optional**, not mandatory
-- Structure supports **solo** and **team** hackathons equally
+## Problem Statement
+Rural broadband infrastructure planning suffers from lack of ground surveys, delayed failure detection, and reactive decision-making.  
+Terrain, weather volatility, and sparse population data are rarely combined into a single analytical system, resulting in fragile connectivity and inefficient investments.
 
 ---
 
-## 🚀 Local Setup
-
-### Prerequisites
-- Node.js ≥ 18
-- npm
-- Git
+## Proposed Solution
+We built a **digital twin–based decision platform** that models rural connectivity conditions using satellite data and machine learning.  
+The platform predicts failure risk, highlights vulnerable regions, and recommends optimized relay or hybrid network planning—without physical deployment or paid APIs.
 
 ---
 
-### Clone
-```bash
-git clone <repo-url>
-cd Template
-````
+## System Architecture
+**Data Ingestion → Geospatial Processing → ML Risk Prediction → Optimization → Visualization**
 
 ---
 
-### Backend
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-Runs on default port defined in `.env.development`.
+## Data Sources (Open & Free)
+- **NASA SRTM / Copernicus DEM** – Terrain and elevation modeling
+- **WorldPop** – Population density prioritization
+- **NOAA Open Weather Data** – Weather volatility and signal stress
+- **OpenCellID (sample/free data)** – Simulated cellular coverage patterns
 
 ---
 
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Runs on `http://localhost:3000`.
+## Data Processing & Geospatial Layer
+- **Python** – Core data and ML pipeline
+- **GeoPandas** – Spatial joins and regional aggregation
+- **Rasterio** – Satellite raster processing
+- **Shapely** – Distance, obstruction, and geometry analysis
 
 ---
 
-## 🔐 Environment Variables
+## Machine Learning Layer
+- **Scikit-learn**
+  - Random Forest (baseline, interpretable)
+  - Gradient Boosting (higher accuracy)
 
-### Backend (`backend/.env.development`)
+### Engineered Features
+- Terrain elevation variance
+- Distance from nearest tower
+- Weather volatility index
+- Population density
+- Simulated historical outage likelihood
 
-```
-PORT=4000
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-FIREBASE_PROJECT_ID=
-FIREBASE_CLIENT_EMAIL=
-FIREBASE_PRIVATE_KEY=
-```
-
-### Frontend (`frontend/.env.local`)
-
-```
-NEXT_PUBLIC_API_URL=http://localhost:4000
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-NEXT_PUBLIC_FIREBASE_API_KEY=
-```
-
-Never commit real credentials.
+### Outputs
+- **Connectivity Risk Score (0–100)**
+- **Binary Classification:** Stable / At-risk
 
 ---
 
-## 🌍 Deployment
+## Optimization & Recommendation Engine
+- **NumPy + SciPy**
+- Identifies high-risk zones
+- Simulates relay or tower placement
+- Minimizes:
+  - Coverage gaps
+  - Cost proxy (distance + terrain difficulty)
 
-### Frontend → Vercel
-
-* Root directory: `frontend`
-* Build command: `npm run build`
-* Output: `.next`
-* Add all `NEXT_PUBLIC_*` env vars
-
-### Backend → Railway
-
-* Root directory: `backend`
-* Start command:
-
-```bash
-npm run start
-```
-
-* Add production env vars from `.env.production`
+### Outputs
+- Suggested relay locations
+- Backup routing paths
+- Satellite–terrestrial hybrid flags
 
 ---
 
-## 👥 Team Usage Guidelines
-
-* **Frontend devs** work only in `frontend/`
-* **Backend devs** work only in `backend/`
-* Shared logic goes in `services/`
-* No direct database mutations from UI
-* No Firebase Admin SDK in frontend
-
----
-
-## ✅ Hackathon Readiness Checklist
-
-* [ ] Backend `/health` route returns 200
-* [ ] Frontend can hit backend API
-* [ ] Supabase tables + policies ready
-* [ ] Auth flow tested
-* [ ] README updated for judges
-* [ ] Demo URL working
+## Backend
+- **FastAPI**
+- Handles:
+  - Data pipeline orchestration
+  - ML inference APIs
+  - Scenario simulation endpoints
 
 ---
 
-## 📜 License
-
-MIT — use, fork, destroy, rebuild.
+## Frontend & Visualization
+- **Next.js** – Dashboard and UI
+- **Leaflet.js** – Interactive maps (no API keys)
+- **Chart.js** – Risk trends and analytics
 
 ---
 
-Built to survive:
+## Deployment (Zero Cost)
+- **Frontend:** Vercel (free tier)
+- **Backend:** Render / Railway (free tier)
+- **Storage:** Local CSV / JSON  
+  Optional: Supabase free tier for persistence
 
-* bad Wi-Fi
-* missing teammates
-* last-minute pivots
-* 3 AM deployments
-* demo-time anxiety
+---
 
-End.
+## Demo Capabilities
+1. Rural map with broadband risk heatmap
+2. Village-level risk score and failure explanation
+3. Weather stress simulation
+4. Relay placement toggle with risk reduction
+5. Infrastructure planning comparison view
 
-```
-```
+---
+
+## Why This Works in a Hackathon
+- No hardware assumptions
+- No paid APIs or licenses
+- Uses real satellite and demographic data
+- ML is explainable and defensible
+- Visually strong and technically credible
+- Direct SDG 9.11 relevance
+
+---
+
+## Team Innoventures
+- **Athar Shaikh**
+- **Sujal Belkhode**
+- **Kaustubh Cahuhan**
+- **Kaifoddin Kazi**
+
+---
+
+## License
+MIT License
