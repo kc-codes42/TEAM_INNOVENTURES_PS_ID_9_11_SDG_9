@@ -1,16 +1,51 @@
 'use client';
 
-import { RiskAnalysis } from '../lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
+import { RiskAnalysis, Region } from '../lib/data';
+import { Card, CardContent, CardHeader, CardTitle, CardReveal } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { AlertCircle, AlertTriangle, CheckCircle2, TrendingDown, ArrowRight } from 'lucide-react';
+import { AlertCircle, AlertTriangle, CheckCircle2, TrendingDown, ArrowRight, FileText, FileSpreadsheet, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { generatePDF, generateCSV } from '@/lib/export';
 
 interface SidebarRightProps {
     analysis: RiskAnalysis;
+    region: Region;
 }
 
-export default function SidebarRight({ analysis }: SidebarRightProps) {
+export default function SidebarRight({ analysis, region }: SidebarRightProps) {
+    const [isExporting, setIsExporting] = useState(false);
+
+    const handleExport = async (type: 'pdf' | 'csv') => {
+        // Build export data object
+        const data = {
+            timestamp: new Date().toLocaleString(),
+            regionName: region.name,
+            riskScore: analysis.score,
+            riskStatus: analysis.status,
+            metrics: {
+                terrain: analysis.factors.terrain,
+                weather: analysis.factors.weather,
+                distance: analysis.factors.distance,
+                load: analysis.factors.load,
+            },
+            recommendations: analysis.recommendations.map(r => ({
+                id: r.id,
+                type: r.type,
+                priority: r.priority,
+                impact: r.impact,
+                description: r.description
+            }))
+        };
+
+        if (type === 'pdf') {
+            await generatePDF(data);
+        } else {
+            generateCSV(data);
+        }
+
+        setIsExporting(false);
+    };
 
     const chartData = [
         { name: 'Terrain', value: analysis.factors.terrain },
@@ -98,29 +133,60 @@ export default function SidebarRight({ analysis }: SidebarRightProps) {
                     <Card key={rec.id} className="shadow-sm border-border hover:border-primary/50 transition-colors cursor-default group">
                         <CardContent className="p-4">
                             <div className="flex justify-between items-start mb-2">
-                                <span className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                                    {rec.type}
-                                </span>
-                                <Badge variant="outline" className="text-[10px] font-bold uppercase text-muted-foreground border-border">
-                                    {rec.priority} Priority
+                                <span className="font-semibold text-sm text-foreground">{rec.type}</span>
+                                <Badge variant={rec.priority === 'High' ? 'destructive' : 'secondary'} className="text-[10px]">
+                                    {rec.priority}
                                 </Badge>
                             </div>
-                            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
-                                {rec.description}
-                            </p>
-                            <div className="inline-flex items-center gap-1.5 px-2 py-1 bg-secondary rounded text-[10px] font-bold text-secondary-foreground group-hover:bg-primary/5 transition-colors">
-                                <TrendingDown className="w-3 h-3" />
-                                Risk Reduction: {rec.impact}%
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                                <TrendingDown className="w-3 h-3 text-emerald-500" />
+                                <span>Reduces risk by {rec.impact}%</span>
                             </div>
+                            <CardReveal className="mt-2 text-xs border-t border-border pt-2 leading-relaxed">
+                                {rec.description}
+                            </CardReveal>
                         </CardContent>
                     </Card>
                 ))}
             </div>
 
-            <button className="mt-auto w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-sm">
-                Export Report
-                <ArrowRight className="w-4 h-4" />
-            </button>
+            {/* Footer Actions */}
+            <div className="mt-auto pt-4 flex flex-col gap-2">
+                {!isExporting ? (
+                    <button
+                        onClick={() => setIsExporting(true)}
+                        className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-sm active:scale-[0.98]"
+                    >
+                        Export Report
+                        <ArrowRight className="w-4 h-4" />
+                    </button>
+                ) : (
+                    <div className="animate-in fade-in slide-in-from-bottom-2 duration-200">
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => handleExport('pdf')}
+                                className="flex-1 bg-rose-600 text-white py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-rose-700 transition-colors shadow-sm"
+                            >
+                                <FileText className="w-4 h-4" />
+                                PDF
+                            </button>
+                            <button
+                                onClick={() => handleExport('csv')}
+                                className="flex-1 bg-emerald-600 text-white py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-emerald-700 transition-colors shadow-sm"
+                            >
+                                <FileSpreadsheet className="w-4 h-4" />
+                                CSV
+                            </button>
+                        </div>
+                        <button
+                            onClick={() => setIsExporting(false)}
+                            className="w-full mt-2 py-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                            Cancel Export
+                        </button>
+                    </div>
+                )}
+            </div>
 
         </div>
     );

@@ -81,7 +81,7 @@ export default function VisualizerPage() {
                 </div>
 
                 {/* Right Panel (Metrics) */}
-                <SidebarRight analysis={analysis} />
+                <SidebarRight analysis={analysis} region={selectedRegion} />
             </main>
 
         </div>

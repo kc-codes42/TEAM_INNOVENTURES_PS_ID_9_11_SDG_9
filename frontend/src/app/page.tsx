@@ -3,7 +3,10 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import SatelliteBackground from '@/components/SatelliteBackground';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardReveal } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ArrowRight, Activity, Globe, ShieldCheck, Wifi } from 'lucide-react';
 
 const tickerItems = [
   'Village Cluster 42: Signal Drop predicted in 2h due to Precipitation.',
@@ -20,169 +23,129 @@ const LaunchPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-hidden text-slate-100">
-      <SatelliteBackground />
-      <motion.div
-        className="absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(20,184,166,0.15),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(14,116,144,0.25),_transparent_55%)]" />
-      </motion.div>
+    <div className="relative min-h-screen bg-background text-foreground flex flex-col font-sans">
 
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center opacity-60"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.6 }}
-        transition={{ duration: 1.5 }}
-      >
-        <motion.svg
-          className="h-full w-full max-w-5xl"
-          viewBox="0 0 900 520"
-          fill="none"
-        >
-          <path
-            d="M116 244 C162 178 248 142 334 130 C402 120 454 138 510 174 C566 210 636 210 692 180 C740 154 776 114 820 94"
-            stroke="#14b8a6"
-            strokeOpacity="0.35"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M104 310 C186 280 266 282 338 320 C410 358 506 380 604 350 C676 328 742 280 820 260"
-            stroke="#38bdf8"
-            strokeOpacity="0.25"
-            strokeWidth="1.5"
-          />
-          <motion.path
-            d="M140 90 C220 70 330 70 430 110 C520 146 620 170 740 150"
-            stroke="#14b8a6"
-            strokeOpacity="0.6"
-            strokeWidth="2"
-            strokeDasharray="6 10"
-            animate={{ strokeDashoffset: [0, -80] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.path
-            d="M180 410 C260 440 360 450 460 430 C580 404 680 340 760 280"
-            stroke="#14b8a6"
-            strokeOpacity="0.5"
-            strokeWidth="2"
-            strokeDasharray="6 10"
-            animate={{ strokeDashoffset: [0, 90] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
-          />
-          <path
-            d="M170 210 C210 180 270 156 332 160 C390 164 430 194 472 220 C520 250 580 270 640 260 C700 248 748 214 790 180"
-            stroke="#94a3b8"
-            strokeOpacity="0.18"
-            strokeWidth="1"
-          />
-        </motion.svg>
-      </motion.div>
-
-      <header className="relative z-10 px-6 py-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-teal-500/40 bg-white/5 text-xs font-bold text-teal-300">
-              SDG 9
+            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center shadow-sm">
+              <Globe className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-semibold text-white">Rural Broadband Resilience</div>
-              <div className="text-xs uppercase tracking-[0.35em] text-slate-400">SDG 9.11</div>
+              <span className="block text-sm font-bold tracking-tight">SDG 9.11 Resilience Platform</span>
+              <span className="block text-[10px] text-muted-foreground uppercase tracking-widest">Rural Broadband Intelligence</span>
             </div>
           </div>
-          <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Satellite Insights</span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Risk Models</span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Network Ops</span>
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+            <a href="#" className="hover:text-foreground transition-colors">Risk Models</a>
+            <a href="#" className="hover:text-foreground transition-colors">Network Ops</a>
+            <Button variant="outline" size="sm" onClick={handleLaunch}>Sign In</Button>
           </nav>
         </div>
       </header>
 
-      <main className="relative z-10 px-6 pb-20">
-        <div className="mx-auto grid max-w-6xl gap-12 pt-10 md:pt-20">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl md:p-12"
-          >
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-teal-300">
-              Satellite Resilience Hub
-            </div>
-            <h1 className="mt-6 text-4xl font-semibold leading-tight text-white md:text-6xl">
-              Satellite-Driven Rural Broadband Resilience Hub
-            </h1>
-            <p className="mt-4 max-w-3xl text-base text-slate-300 md:text-lg">
-              Harnessing satellite data to predict connectivity risks and engineer self-healing networks
-              for unreached rural communities. (SDG 9.11)
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <motion.button
-                onClick={handleLaunch}
-                className="relative overflow-hidden rounded-xl bg-[#14b8a6] px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-teal-500/30"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="relative z-10">Explore Satellite Map</span>
-                <motion.span
-                  className="absolute inset-0 rounded-xl bg-white/30"
-                  animate={{ opacity: [0.2, 0.6, 0.2] }}
-                  transition={{ duration: 2.2, repeat: Infinity }}
-                />
-              </motion.button>
-              <button className="rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-slate-200">
-                View Intelligence Brief
-              </button>
-            </div>
-          </motion.div>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="container mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
 
+          <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-xs uppercase tracking-widest font-bold">
+            Satellite-Driven Analytics
+          </Badge>
+
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground max-w-4xl mb-6">
+            Predict & Prevent Broadband Outages in <span className="text-primary">Rural Connectivity</span>
+          </h1>
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+            Harnessing real-time satellite data and terrain analysis to engineer self-healing networks for unreached communities.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Button size="lg" onClick={handleLaunch} className="px-8 h-12 text-base shadow-lg shadow-primary/20">
+              Explore Satellite Map <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+            <Button variant="outline" size="lg" className="px-8 h-12 text-base">
+              View Methodology
+            </Button>
+          </div>
+
+          {/* Mock Dashboard Preview */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="grid gap-6 md:grid-cols-3"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-16 w-full max-w-5xl rounded-xl border border-border shadow-2xl overflow-hidden bg-card"
           >
-            {[
-              {
-                title: 'Geospatial Analysis',
-                text: 'Analyze terrain obstructions and distance-to-tower metrics using real-time satellite imagery.',
-              },
-              {
-                title: 'Predictive Failure Modeling',
-                text: 'ML-driven risk scores to anticipate outages caused by weather patterns and infrastructure gaps.',
-              },
-              {
-                title: 'Resilience Simulation',
-                text: 'Stress-test network stability against extreme weather events and peak user loads.',
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-              >
-                <div className="text-xs uppercase tracking-[0.3em] text-teal-300">Capability</div>
-                <h3 className="mt-3 text-lg font-semibold text-white">{card.title}</h3>
-                <p className="mt-3 text-sm text-slate-300">{card.text}</p>
-              </div>
-            ))}
+            <div className="h-10 bg-muted/50 border-b border-border flex items-center px-4 gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-400/20 border border-red-500/50" />
+              <div className="w-3 h-3 rounded-full bg-amber-400/20 border border-amber-500/50" />
+              <div className="w-3 h-3 rounded-full bg-emerald-400/20 border border-emerald-500/50" />
+            </div>
+            <div className="aspect-[16/9] bg-muted/10 relative flex items-center justify-center">
+              <p className="text-sm text-muted-foreground font-mono">Interactive Risk Visualization Engine Preview</p>
+            </div>
           </motion.div>
-        </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="container mx-auto px-6 py-24 border-t border-border">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-card/50 border-border shadow-none hover:border-primary/50 transition-colors">
+              <CardHeader>
+                <Activity className="w-8 h-8 text-primary mb-2" />
+                <CardTitle className="text-lg">Predictive Modeling</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest text-[10px]">Core Capability</span>
+                <CardReveal className="mt-2">
+                  ML-driven risk scores to anticipate outages caused by severe weather patterns and infrastructure gaps.
+                </CardReveal>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 border-border shadow-none hover:border-primary/50 transition-colors">
+              <CardHeader>
+                <ShieldCheck className="w-8 h-8 text-primary mb-2" />
+                <CardTitle className="text-lg">Resilience Simulation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest text-[10px]">Stress Testing</span>
+                <CardReveal className="mt-2">
+                  Stress-test network component choices against extreme terrain and user load scenarios.
+                </CardReveal>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/50 border-border shadow-none hover:border-primary/50 transition-colors">
+              <CardHeader>
+                <Wifi className="w-8 h-8 text-primary mb-2" />
+                <CardTitle className="text-lg">Geospatial Analytics</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest text-[10px]">Real-time Data</span>
+                <CardReveal className="mt-2">
+                  Analyze line-of-sight obstructions and signal attenuation using live satellite imagery.
+                </CardReveal>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
       </main>
 
-      <footer className="relative z-10 border-t border-white/10 bg-slate-950/70 px-6 py-4 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
-          <span className="uppercase tracking-[0.3em] text-teal-300">Live Risk Status</span>
-          <div className="relative w-full overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 md:w-2/3">
+      {/* Footer Ticker */}
+      <footer className="border-t border-border bg-muted/30 py-4 overflow-hidden">
+        <div className="container mx-auto px-6 flex items-center gap-4">
+          <Badge variant="outline" className="shrink-0 bg-background text-xs font-bold uppercase tracking-wider">Live Intel</Badge>
+          <div className="flex-1 overflow-hidden relative h-6">
             <motion.div
-              className="flex w-max gap-8 text-slate-200"
+              className="absolute whitespace-nowrap text-xs font-mono text-muted-foreground flex gap-8"
               animate={{ x: ['0%', '-50%'] }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
             >
-              {[...tickerItems, ...tickerItems].map((item, index) => (
-                <span key={`${item}-${index}`} className="whitespace-nowrap">
+              {[...tickerItems, ...tickerItems].map((item, i) => (
+                <span key={i} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   {item}
                 </span>
               ))}
@@ -190,6 +153,7 @@ const LaunchPage = () => {
           </div>
         </div>
       </footer>
+
     </div>
   );
 };

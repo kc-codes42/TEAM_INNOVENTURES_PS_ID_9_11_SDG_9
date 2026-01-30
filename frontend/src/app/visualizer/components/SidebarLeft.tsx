@@ -1,10 +1,10 @@
 'use client';
 
 import { Region, SimulationSettings, MOCK_REGIONS } from '../lib/data';
-import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Switch } from './ui/switch';
-import { Slider } from './ui/slider';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
+import { Slider } from '@/components/ui/slider';
 import { Globe, Wind, Zap, Users } from 'lucide-react';
 
 interface SidebarLeftProps {
@@ -55,16 +55,18 @@ export default function SidebarLeft({
                             ))}
                         </SelectContent>
                     </Select>
-                    <div className="mt-4 text-xs text-muted-foreground space-y-2">
-                        <div className="flex justify-between border-b border-border pb-1">
-                            <span>Base Terrain Risk:</span>
+
+                    <div className="mt-4 text-xs text-muted-foreground flex gap-4">
+                        <div className="flex flex-col">
+                            <span className="uppercase tracking-widest text-[10px] opacity-70">Terrain Risk</span>
                             <span className="font-mono font-medium text-foreground">{selectedRegion.riskFactors.terrain}%</span>
                         </div>
-                        <div className="flex justify-between pt-1">
-                            <span>Base Pop. Density:</span>
+                        <div className="flex flex-col">
+                            <span className="uppercase tracking-widest text-[10px] opacity-70">Pop. Density</span>
                             <span className="font-mono font-medium text-foreground">{selectedRegion.riskFactors.popDensity}%</span>
                         </div>
                     </div>
+
                 </CardContent>
             </Card>
 
