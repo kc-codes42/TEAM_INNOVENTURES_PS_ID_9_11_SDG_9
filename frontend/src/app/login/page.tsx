@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import Link from 'next/link';
+import SatelliteBackground from '@/components/SatelliteBackground';
 
 export default function AuthGateway() {
     const router = useRouter();
@@ -52,22 +53,23 @@ export default function AuthGateway() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 flex flex-col">
+        <div className="min-h-screen bg-slate-950 flex flex-col relative overflow-hidden">
+            <SatelliteBackground />
             {/* Header Bar */}
             <header className="border-b border-slate-700/50 bg-slate-950/80 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-cyan-600/20 border border-cyan-600/50 rounded flex items-center justify-center">
-                                <svg className="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="w-8 h-8 bg-teal-500/20 border border-teal-500/50 rounded flex items-center justify-center">
+                                <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                 </svg>
                             </div>
-                            <span className="text-slate-300 font-semibold text-sm tracking-wide">Digital Twin Platform</span>
+                            <span className="text-slate-300 font-semibold text-sm tracking-wide">Rural Broadband Resilience</span>
                         </Link>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-500">
-                        <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
+                        <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
                         <span>Secure Gateway</span>
                     </div>
                 </div>
@@ -88,7 +90,7 @@ export default function AuthGateway() {
                     </div>
 
                     {/* Auth Container */}
-                    <div className="bg-slate-900/50 border border-slate-700/50 rounded-lg p-8 backdrop-blur-sm">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl">
 
                         {/* Error Display */}
                         {error && (
@@ -104,11 +106,11 @@ export default function AuthGateway() {
                         )}
 
                         {/* Auth Method Selector */}
-                        <div className="flex gap-2 mb-8 p-1 bg-slate-800/50 rounded-lg border border-slate-700/30">
+                        <div className="flex gap-2 mb-8 p-1 bg-slate-800/50 rounded-lg border border-white/10">
                             <button
                                 onClick={() => setAuthMethod('email')}
                                 className={`flex-1 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${authMethod === 'email'
-                                    ? 'bg-slate-700 text-slate-100 shadow-sm'
+                                        ? 'bg-slate-700 text-slate-100 shadow-sm'
                                     : 'text-slate-400 hover:text-slate-300'
                                     }`}
                             >
@@ -117,7 +119,7 @@ export default function AuthGateway() {
                             <button
                                 onClick={() => setAuthMethod('oauth')}
                                 className={`flex-1 px-4 py-2.5 rounded-md text-sm font-medium transition-all duration-200 ${authMethod === 'oauth'
-                                    ? 'bg-slate-700 text-slate-100 shadow-sm'
+                                        ? 'bg-slate-700 text-slate-100 shadow-sm'
                                     : 'text-slate-400 hover:text-slate-300'
                                     }`}
                             >
@@ -140,8 +142,8 @@ export default function AuthGateway() {
                                         onFocus={() => setFocusedField('email')}
                                         onBlur={() => setFocusedField(null)}
                                         onKeyPress={handleKeyPress}
-                                        className={`w-full px-4 py-3 bg-slate-800/50 border rounded-lg text-slate-100 placeholder-slate-500 text-sm transition-all duration-200 focus:outline-none ${focusedField === 'email'
-                                            ? 'border-cyan-600 ring-2 ring-cyan-600/20'
+                                        className={`w-full px-4 py-3 bg-slate-900/60 border rounded-lg text-slate-100 placeholder-slate-500 text-sm transition-all duration-200 focus:outline-none ${focusedField === 'email'
+                                            ? 'border-teal-500 ring-2 ring-teal-500/20'
                                             : 'border-slate-700 hover:border-slate-600'
                                             }`}
                                         placeholder="engineer@company.com"
@@ -160,8 +162,8 @@ export default function AuthGateway() {
                                         onFocus={() => setFocusedField('password')}
                                         onBlur={() => setFocusedField(null)}
                                         onKeyPress={handleKeyPress}
-                                        className={`w-full px-4 py-3 bg-slate-800/50 border rounded-lg text-slate-100 placeholder-slate-500 text-sm transition-all duration-200 focus:outline-none ${focusedField === 'password'
-                                            ? 'border-cyan-600 ring-2 ring-cyan-600/20'
+                                        className={`w-full px-4 py-3 bg-slate-900/60 border rounded-lg text-slate-100 placeholder-slate-500 text-sm transition-all duration-200 focus:outline-none ${focusedField === 'password'
+                                            ? 'border-teal-500 ring-2 ring-teal-500/20'
                                             : 'border-slate-700 hover:border-slate-600'
                                             }`}
                                         placeholder="••••••••••••"
@@ -171,7 +173,7 @@ export default function AuthGateway() {
                                 <button
                                     onClick={handleEmailAuth}
                                     disabled={isLoading || !email || !password}
-                                    className="w-full mt-8 px-6 py-3.5 bg-cyan-600 hover:bg-cyan-500 disabled:bg-cyan-600/50 text-slate-50 font-semibold text-sm rounded-lg transition-all duration-200 shadow-lg shadow-cyan-600/20 hover:shadow-cyan-500/30 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                                    className="w-full mt-8 px-6 py-3.5 bg-[#14b8a6] hover:bg-teal-400 disabled:bg-teal-500/50 text-slate-950 font-semibold text-sm rounded-lg transition-all duration-200 shadow-lg shadow-teal-500/30 hover:shadow-teal-400/30 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                                 >
                                     {isLoading ? (
                                         <>
@@ -238,7 +240,7 @@ export default function AuthGateway() {
                     <div className="mt-6 text-center">
                         <p className="text-slate-400 text-sm">
                             Don't have an account?{' '}
-                            <Link href="/signup" className="text-cyan-500 hover:text-cyan-400 font-medium transition-colors">
+                            <Link href="/signup" className="text-teal-300 hover:text-teal-200 font-medium transition-colors">
                                 Create one
                             </Link>
                         </p>
@@ -254,7 +256,7 @@ export default function AuthGateway() {
             </main>
 
             {/* Bottom Accent */}
-            <div className="h-px bg-gradient-to-r from-transparent via-cyan-600/30 to-transparent" />
+            <div className="h-px bg-gradient-to-r from-transparent via-teal-400/30 to-transparent" />
         </div>
     );
 };
