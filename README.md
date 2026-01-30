@@ -122,6 +122,7 @@ The platform predicts failure risk, highlights vulnerable regions, and recommend
 - ML is explainable and defensible
 - Visually strong and technically credible
 - Direct SDG 9.11 relevance
+- hello
 
 ---
 
