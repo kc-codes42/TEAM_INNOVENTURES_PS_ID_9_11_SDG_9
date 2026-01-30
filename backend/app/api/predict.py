@@ -6,6 +6,15 @@ from app.services.features import build_feature_vector
 from app.services.ml import risk_model
 from app.services.simulation import simulate_scenarios
 from app.services.recommendation import generate_recommendations
+from app.services.weather_real import extract_weather_features
+from app.services.region_naming import get_region_name
+
+centroid = geo_data["geometry"].centroid
+raw_data["weather"] = extract_weather_features(
+    lat=centroid.y,
+    lon=centroid.x
+)
+
 
 router = APIRouter(prefix="/predict", tags=["prediction"])
 
@@ -20,6 +29,10 @@ def predict_region(region: RegionRequest):
             raise ValueError("region_id required for mock data")
 
         raw_data = load_all_region_data(region.region_id)
+
+        # Extract real DEM-based terrain using bounding box geometry
+        from app.services.data_loader import load_real_terrain
+        raw_data["terrain"] = load_real_terrain(geo_data["geometry"])
 
         # 3. Feature engineering
         features = build_feature_vector(raw_data, geo_data)
@@ -49,3 +62,9 @@ def predict_region(region: RegionRequest):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+
+
+centroid = geo_data["geometry"].centroid
+region_name = get_region_name(centroid.y, centroid.x)
+

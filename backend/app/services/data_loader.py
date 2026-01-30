@@ -1,5 +1,6 @@
 import pandas as pd
 from pathlib import Path
+from app.services.terrain_real import extract_terrain_features
 
 BASE_PATH = Path(__file__).resolve().parents[1]
 RAW_DATA_PATH = BASE_PATH / "data" / "raw"
@@ -28,3 +29,8 @@ def load_all_region_data(region_id: str) -> dict:
         "weather": extract(weather),
         "network": extract(network),
     }
+
+
+def load_real_terrain(geometry):
+    return extract_terrain_features(geometry)
+

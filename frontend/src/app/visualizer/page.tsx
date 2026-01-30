@@ -183,14 +183,12 @@ function ToggleSwitch({
           </div>
         </div>
         <div
-          className={`h-6 w-11 rounded-full p-1 transition ${
-            checked ? 'bg-emerald-500/80' : 'bg-slate-700/70'
-          }`}
+          className={`h-6 w-11 rounded-full p-1 transition ${checked ? 'bg-emerald-500/80' : 'bg-slate-700/70'
+            }`}
         >
           <div
-            className={`h-4 w-4 rounded-full bg-white shadow transition ${
-              checked ? 'translate-x-5' : 'translate-x-0'
-            }`}
+            className={`h-4 w-4 rounded-full bg-white shadow transition ${checked ? 'translate-x-5' : 'translate-x-0'
+              }`}
           />
         </div>
       </div>
@@ -368,11 +366,10 @@ export default function Visualizer() {
                   {villageScores.map((village) => (
                     <div
                       key={village.id}
-                      className={`rounded-2xl border px-4 py-3 transition ${
-                        village.id === selectedVillage.id
+                      className={`rounded-2xl border px-4 py-3 transition ${village.id === selectedVillage.id
                           ? 'border-emerald-500/70 bg-emerald-500/10'
                           : 'border-slate-800/70 bg-slate-900/40'
-                      }`}
+                        }`}
                       onClick={() => setSelectedVillageId(village.id)}
                       role="button"
                       tabIndex={0}
@@ -401,11 +398,10 @@ export default function Visualizer() {
                       <h3 className="text-xl font-semibold text-white">{selectedVillage.name}</h3>
                     </div>
                     <div
-                      className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                        villageScores.find((v) => v.id === selectedVillage.id)?.atRisk
+                      className={`rounded-full px-3 py-1 text-xs font-semibold ${villageScores.find((v) => v.id === selectedVillage.id)?.atRisk
                           ? 'bg-red-500/20 text-red-300'
                           : 'bg-emerald-500/20 text-emerald-300'
-                      }`}
+                        }`}
                     >
                       {villageScores.find((v) => v.id === selectedVillage.id)?.atRisk
                         ? 'At Risk'
