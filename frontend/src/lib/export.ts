@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { RiskAnalysis } from './data';
+import { RiskAnalysis } from '@/app/visualizer/lib/data';
 
 interface ExportData {
     timestamp: string;
