@@ -1,11 +1,12 @@
 # Team Innoventures
 
 ## Project Title
-Digital Twin for Rural Broadband Resilience
+Rural Broadband Risk Prediction
 
 ## SDG Alignment
 **SDG 9 – Industry, Innovation and Infrastructure**  
-**Target 9.1 / 9.11:** Develop reliable, sustainable, and resilient infrastructure using digital and data-driven technologies.
+**PS ID: 9.11 - Engineer software for resilient broadband networks in rural areas 
+using satellite data.**
 
 ---
 
