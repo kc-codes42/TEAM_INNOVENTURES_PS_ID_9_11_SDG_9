@@ -29,7 +29,7 @@ export default function SidebarLeft({
     };
 
     return (
-        <div className="w-80 flex flex-col gap-4 overflow-y-auto pr-2 pb-4">
+        <div className="w-full lg:w-80 flex flex-col gap-4 overflow-y-auto pr-0 lg:pr-2 pb-4 order-2 lg:order-none shrink-0">
             {/* Region Selection */}
             <Card>
                 <CardHeader className="p-4 pb-2">

@@ -68,7 +68,13 @@ export default function SignupPage() {
       {/* Header / Brand */}
       <div className="mb-8 text-center flex flex-col items-center">
         <div className="w-10 h-10 bg-primary text-primary-foreground rounded-lg flex items-center justify-center shadow-sm mb-4">
-          <Globe className="w-6 h-6" />
+          <div className="w-8 h-8 rounded-full bg-background flex items-center justify-center shadow-sm">
+              <img
+                src="/fucklogo.png"
+                alt="App logo"
+                className="w-15 h-15 rounded-full object-contain"
+              />
+            </div>
         </div>
         <h1 className="text-2xl font-bold tracking-tight">SDG 9.11 Resilience Platform</h1>
         <p className="text-sm text-muted-foreground mt-1">Authorized Access Gateway</p>

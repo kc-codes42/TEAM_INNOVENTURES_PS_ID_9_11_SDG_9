@@ -29,21 +29,23 @@ const LaunchPage = () => {
       <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center shadow-sm">
-              <Globe className="w-5 h-5" />
+            <div className="w-8 h-8 rounded-full bg-background flex items-center justify-center shadow-sm">
+              <img
+                src="/fucklogo.png"
+                alt="App logo"
+                className="w-15 h-15 rounded-full object-contain"
+              />
             </div>
             <div>
-              <span className="block text-sm font-bold tracking-tight">SDG 9.11 Resilience Platform</span>
-              <span className="block text-[10px] text-muted-foreground uppercase tracking-widest">Rural Broadband Intelligence</span>
+              <span className="block text-sm font-bold tracking-tight">Connect All</span>
+              <span className="block text-[10px] text-muted-foreground uppercase tracking-widest">
+                Rural Broadband Intelligence
+              </span>
             </div>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">Risk Models</a>
-            <a href="#" className="hover:text-foreground transition-colors">Network Ops</a>
-            <Button variant="outline" size="sm" onClick={handleLaunch}>Sign In</Button>
-          </nav>
         </div>
       </header>
+
 
       <main className="flex-1">
         {/* Hero Section */}

@@ -71,7 +71,7 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
     };
 
     return (
-        <div className="w-96 flex flex-col gap-6 overflow-y-auto pl-2">
+        <div className="w-full lg:w-96 flex flex-col gap-6 overflow-y-auto pl-0 lg:pl-2 pb-4 lg:pb-0 order-3 lg:order-none">
             {/* Overall Score */}
             <Card className="border-l-4 border-l-primary bg-card">
                 <CardContent className="p-6">

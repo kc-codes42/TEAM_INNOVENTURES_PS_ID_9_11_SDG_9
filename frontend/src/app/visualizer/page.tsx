@@ -39,11 +39,15 @@ export default function VisualizerPage() {
             {/* Header */}
             <header className="h-14 border-b border-border bg-card flex items-center px-6 shrink-0 justify-between">
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center shadow-sm">
-                        <Globe className="w-5 h-5" />
-                    </div>
+                    <div className="w-8 h-8 rounded-full bg-background flex items-center justify-center shadow-sm">
+              <img
+                src="/fucklogo.png"
+                alt="App logo"
+                className="w-15 h-15 rounded-full object-contain"
+              />
+            </div>
                     <div>
-                        <h1 className="text-sm font-bold tracking-tight text-foreground">SDG 9.11 Resilience Platform</h1>
+                        <h1 className="text-sm font-bold tracking-tight text-foreground">Connect All</h1>
                         <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">Rural Broadband Risk Visualizer</p>
                     </div>
                 </div>
@@ -56,7 +60,7 @@ export default function VisualizerPage() {
             </header>
 
             {/* Main Workspace */}
-            <main className="flex-1 flex overflow-hidden p-6 gap-6 bg-muted/10">
+            <main className="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden p-4 lg:p-6 gap-4 lg:gap-6 bg-muted/10">
                 {/* Left Panel (Controls) */}
                 <SidebarLeft
                     selectedRegion={selectedRegion}
@@ -66,12 +70,12 @@ export default function VisualizerPage() {
                 />
 
                 {/* Center Map */}
-                <div className="flex-1 flex flex-col min-w-0">
+                <div className="flex-1 flex flex-col min-w-0 min-h-[50vh] lg:min-h-0 order-1 lg:order-none">
                     <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm border border-border">
                         <MapExplorer region={selectedRegion} analysis={analysis} />
 
                         {/* Map Overlay Info */}
-                        <div className="absolute top-4 left-4 z-[999] bg-popover/90 backdrop-blur px-4 py-2 rounded-lg border border-border shadow-sm pointer-events-none">
+                        <div className="absolute top-4 left-4 z-[400] bg-popover/90 backdrop-blur px-4 py-2 rounded-lg border border-border shadow-sm pointer-events-none max-w-[calc(100%-2rem)]">
                             <h2 className="text-sm font-bold text-popover-foreground">{selectedRegion.name}</h2>
                             <p className="text-xs text-muted-foreground font-mono mt-0.5">
                                 Lat: {selectedRegion.center[0].toFixed(2)}, Lng: {selectedRegion.center[1].toFixed(2)}
