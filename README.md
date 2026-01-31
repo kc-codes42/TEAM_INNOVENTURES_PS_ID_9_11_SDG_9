@@ -97,7 +97,7 @@ Try **Connect All** live and explore rural broadband risk visualization for Indi
     <img src="https://img.shields.io/badge/Live%20Demo-Connect%20All-4285F4?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo">
   </a>
   <br><br>
-  <img src="frontend/public/demo-screenshot.png" alt="Connect All Dashboard Preview" width="800" />
+  <img src="frontend/public/mainwindow.jpeg" alt="Connect All Dashboard Preview" width="800" />
   <p><em>Interactive risk heatmap showing high-risk rural zones across Maharashtra</em></p>
 </div>
 
