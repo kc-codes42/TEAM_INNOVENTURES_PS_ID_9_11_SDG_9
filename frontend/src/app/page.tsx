@@ -84,8 +84,12 @@ const LaunchPage = () => {
               <div className="w-3 h-3 rounded-full bg-amber-400/20 border border-amber-500/50" />
               <div className="w-3 h-3 rounded-full bg-emerald-400/20 border border-emerald-500/50" />
             </div>
-            <div className="aspect-[16/9] bg-muted/10 relative flex items-center justify-center">
-              <p className="text-sm text-muted-foreground font-mono">Interactive Risk Visualization Engine Preview</p>
+            <div className="aspect-[16/9] relative overflow-hidden">
+              <img
+                src="/mainwindow.jpeg"
+                alt="Risk Visualization Engine Preview"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
           </motion.div>
         </section>
