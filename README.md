@@ -93,7 +93,7 @@ npm run dev
 Try **Connect All** live and explore rural broadband risk visualization for India:
 
 <div align="center">
-  <a href="https://hackathon-three-dun.vercel.app/" target="_blank">
+  <a href="https://conventional-alpha.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/Live%20Demo-Connect%20All-4285F4?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo">
   </a>
   <br><br>
@@ -102,7 +102,7 @@ Try **Connect All** live and explore rural broadband risk visualization for Indi
 </div>
 
 **🔗 Direct Links:**
-- 🚀 [Production Demo](https://hackathon-three-dun.vercel.app/)
+- 🚀 [Production Demo](https://conventional-alpha.vercel.app/)
 
 ---
 ## 📊 Presentation Slides
