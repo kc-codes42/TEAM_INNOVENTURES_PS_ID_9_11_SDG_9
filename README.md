@@ -110,7 +110,7 @@ Try **Connect All** live and explore rural broadband risk visualization for Indi
 **Download the complete pitch deck:**
 
 <div align="center">
-  <a href="https://drive.google.com/file/d/YOUR_GDRIVE_LINK/view?usp=sharing" target="_blank">
+  <a href="https://drive.google.com/file/d/1Wz0MSSDj5RDCxsqFNg1dKEkERKqfw8Sp/view?usp=sharing" target="_blank">
     <img src="https://img.shields.io/badge/Pitch%20Deck-Google%20Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white" alt="Pitch Deck">
   </a>
   <br><br>
