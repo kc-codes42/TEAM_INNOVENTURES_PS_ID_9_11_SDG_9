@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
-import { Globe, Wind, Zap, Users } from 'lucide-react';
+import { Globe, Wind, Zap, Users, BarChart3 } from 'lucide-react';
 
 interface SidebarLeftProps {
     selectedRegion: Region;
@@ -29,7 +29,7 @@ export default function SidebarLeft({
     };
 
     return (
-        <div className="w-full lg:w-80 flex flex-col gap-4 overflow-y-auto pr-0 lg:pr-2 pb-4 order-2 lg:order-none shrink-0">
+        <div className="w-full lg:w-80 flex flex-col gap-4 overflow-y-auto overflow-x-hidden pr-0 lg:pr-2 pb-4 order-2 lg:order-none shrink-0">
             {/* Region Selection */}
             <Card>
                 <CardHeader className="p-4 pb-2">
@@ -57,12 +57,12 @@ export default function SidebarLeft({
                     </Select>
 
                     <div className="mt-4 text-xs text-muted-foreground flex gap-4">
-                        <div className="flex flex-col">
-                            <span className="uppercase tracking-widest text-[10px] opacity-70">Terrain Risk</span>
+                        <div className="flex flex-col min-w-0">
+                            <span className="uppercase tracking-widest text-[10px] opacity-70 truncate">Terrain Risk</span>
                             <span className="font-mono font-medium text-foreground">{selectedRegion.riskFactors.terrain}%</span>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="uppercase tracking-widest text-[10px] opacity-70">Pop. Density</span>
+                        <div className="flex flex-col min-w-0">
+                            <span className="uppercase tracking-widest text-[10px] opacity-70 truncate">Pop. Density</span>
                             <span className="font-mono font-medium text-foreground">{selectedRegion.riskFactors.popDensity}%</span>
                         </div>
                     </div>
@@ -124,24 +124,31 @@ export default function SidebarLeft({
                 </CardContent>
             </Card>
 
-            {/* Infra Failure Toggle */}
-            <Card>
-                <CardHeader className="p-4 pb-0">
+            {/* Compact Toggles Section */}
+            <Card className="border-border shadow-sm">
+                <CardContent className="p-3 space-y-3">
                     <div className="flex items-center justify-between">
-                        <CardTitle className="text-xs font-bold flex items-center gap-2 text-foreground">
-                            <Zap className="w-4 h-4 text-red-600" />
-                            Backbone Failure
-                        </CardTitle>
+                        <div className="flex items-center gap-2">
+                            <Zap className="w-3.5 h-3.5 text-red-600" />
+                            <span className="text-xs font-bold text-foreground">Backbone Failure</span>
+                        </div>
                         <Switch
                             checked={settings.infraFailure}
                             onCheckedChange={(val) => updateSetting('infraFailure', val)}
+                            className="scale-90"
                         />
                     </div>
-                </CardHeader>
-                <CardContent className="p-4 pt-2">
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                        Simulates a critical failure in the primary fiber backbone.
-                    </p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <BarChart3 className="w-3.5 h-3.5 text-indigo-600" />
+                            <span className="text-xs font-bold text-foreground">Risk Heatmap</span>
+                        </div>
+                        <Switch
+                            checked={settings.showHeatmap}
+                            onCheckedChange={(val) => updateSetting('showHeatmap', val)}
+                            className="scale-90"
+                        />
+                    </div>
                 </CardContent>
             </Card>
 

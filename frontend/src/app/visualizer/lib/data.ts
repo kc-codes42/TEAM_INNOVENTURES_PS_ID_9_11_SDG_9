@@ -23,6 +23,7 @@ export interface SimulationSettings {
     weatherSeverity: number; // 0-100 (slider)
     infraFailure: boolean;   // toggle
     userLoad: number;        // 1-10 multiplier
+    showHeatmap: boolean;    // new toggle
 }
 
 export interface RiskAnalysis {

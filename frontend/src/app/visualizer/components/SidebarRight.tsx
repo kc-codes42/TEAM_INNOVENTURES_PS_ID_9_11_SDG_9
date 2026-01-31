@@ -71,9 +71,9 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
     };
 
     return (
-        <div className="w-full lg:w-96 flex flex-col gap-6 overflow-y-auto pl-0 lg:pl-2 pb-4 lg:pb-0 order-3 lg:order-none">
+        <div className="w-full lg:w-96 flex flex-col gap-6 overflow-y-auto overflow-x-hidden pl-0 lg:pl-2 pb-4 lg:pb-0 order-3 lg:order-none relative">
             {/* Overall Score */}
-            <Card className="border-l-4 border-l-primary bg-card">
+            <Card className="border-l-4 border-l-primary bg-card shrink-0">
                 <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-2">
                         <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Resilience Score</span>
@@ -82,7 +82,7 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
                         </Badge>
                     </div>
                     <div className="flex items-baseline gap-2 mb-2">
-                        <span className="text-5xl font-extrabold tracking-tighter text-foreground">
+                        <span className="text-4xl font-extrabold tracking-tighter text-foreground">
                             {analysis.score}
                         </span>
                         <span className="text-sm font-medium text-muted-foreground">/ 100 Risk</span>
@@ -97,28 +97,28 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
             </Card>
 
             {/* Factor Breakdown Chart */}
-            <Card className="shadow-sm border-border">
+            <Card className="shadow-sm border-border shrink-0">
                 <CardHeader className="p-4 pb-0">
                     <CardTitle className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Risk Factors</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 h-48">
+                <CardContent className="p-4 h-[200px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={chartData} layout="vertical" margin={{ left: -20, right: 30, top: 10, bottom: 0 }}>
+                        <BarChart data={chartData} layout="vertical" margin={{ left: -10, right: 20, top: 0, bottom: 0 }}>
                             <XAxis type="number" domain={[0, 100]} hide />
-                            <YAxis dataKey="name" type="category" width={70} tick={{ fontSize: 11, fill: 'var(--foreground)' }} tickLine={false} axisLine={false} />
+                            <YAxis dataKey="name" type="category" width={65} tick={{ fontSize: 10, fill: 'var(--foreground)' }} tickLine={false} axisLine={false} />
                             <Tooltip
                                 cursor={{ fill: 'transparent' }}
                                 contentStyle={{
                                     borderRadius: 'var(--radius)',
-                                    fontSize: '12px',
+                                    fontSize: '11px',
                                     border: '1px solid var(--border)',
                                     backgroundColor: 'var(--popover)',
                                     color: 'var(--popover-foreground)'
                                 }}
                             />
-                            <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={18}>
+                            <Bar dataKey="value" radius={[0, 4, 4, 0]} barSize={20}>
                                 {chartData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={entry.value > 75 ? '#ef4444' : entry.value > 45 ? '#f59e0b' : '#059669'} />
+                                    <Cell key={`cell-${index}`} fill={entry.value > 75 ? '#dc2626' : entry.value > 45 ? '#f59e0b' : '#16a34a'} />
                                 ))}
                             </Bar>
                         </BarChart>
@@ -127,22 +127,22 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
             </Card>
 
             {/* Recommendations */}
-            <div className="space-y-3">
+            <div className="space-y-3 pb-24">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground pl-1">Strategic Recommendations</h4>
                 {analysis.recommendations.map((rec) => (
-                    <Card key={rec.id} className="shadow-sm border-border hover:border-primary/50 transition-colors cursor-default group">
+                    <Card key={rec.id} className="shadow-sm border-border hover:border-primary/50 transition-colors cursor-default group overflow-visible">
                         <CardContent className="p-4">
                             <div className="flex justify-between items-start mb-2">
-                                <span className="font-semibold text-sm text-foreground">{rec.type}</span>
-                                <Badge variant={rec.priority === 'High' ? 'destructive' : 'secondary'} className="text-[10px]">
+                                <span className="font-semibold text-sm text-foreground leading-tight">{rec.type}</span>
+                                <Badge variant={rec.priority === 'High' ? 'destructive' : 'secondary'} className="text-[10px] shrink-0 ml-2">
                                     {rec.priority}
                                 </Badge>
                             </div>
                             <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                                <TrendingDown className="w-3 h-3 text-emerald-500" />
-                                <span>Reduces risk by {rec.impact}%</span>
+                                <TrendingDown className="w-3 h-3 text-emerald-500 shrink-0" />
+                                <span className="truncate">Reduces risk by {rec.impact}%</span>
                             </div>
-                            <CardReveal className="mt-2 text-xs border-t border-border pt-2 leading-relaxed">
+                            <CardReveal className="mt-2 text-xs border-t border-border pt-2 leading-relaxed whitespace-normal break-words">
                                 {rec.description}
                             </CardReveal>
                         </CardContent>
@@ -151,17 +151,17 @@ export default function SidebarRight({ analysis, region }: SidebarRightProps) {
             </div>
 
             {/* Footer Actions */}
-            <div className="mt-auto pt-4 flex flex-col gap-2">
+            <div className="sticky bottom-0 lg:bottom-0 pt-6 pb-6 mt-auto z-[20] flex flex-col gap-2 bg-gradient-to-t from-background via-background to-transparent px-2 -mx-2">
                 {!isExporting ? (
                     <button
                         onClick={() => setIsExporting(true)}
-                        className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-sm active:scale-[0.98]"
+                        className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg active:scale-[0.98] border border-primary/20"
                     >
                         Export Report
                         <ArrowRight className="w-4 h-4" />
                     </button>
                 ) : (
-                    <div className="animate-in fade-in slide-in-from-bottom-2 duration-200">
+                    <div className="animate-in fade-in slide-in-from-bottom-2 duration-200 bg-card p-3 rounded-xl border border-border shadow-2xl">
                         <div className="flex gap-2">
                             <button
                                 onClick={() => handleExport('pdf')}

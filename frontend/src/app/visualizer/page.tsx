@@ -26,6 +26,7 @@ export default function VisualizerPage() {
         weatherSeverity: 0,
         infraFailure: false,
         userLoad: 1,
+        showHeatmap: false,
     });
 
     // Derived State (Risk Analysis)
@@ -34,18 +35,18 @@ export default function VisualizerPage() {
     }, [selectedRegion, settings]);
 
     return (
-        <div className="flex flex-col h-screen bg-background font-sans text-foreground overflow-hidden">
 
+        <div className="flex flex-col h-screen bg-background font-sans text-foreground overflow-hidden">
             {/* Header */}
-            <header className="h-14 border-b border-border bg-card flex items-center px-6 shrink-0 justify-between">
+            <header className="h-14 border-b border-border bg-card flex items-center px-6 shrink-0 justify-between z-[500]">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-background flex items-center justify-center shadow-sm">
-              <img
-                src="/fucklogo.png"
-                alt="App logo"
-                className="w-15 h-15 rounded-full object-contain"
-              />
-            </div>
+                        <img
+                            src="/fucklogo.png"
+                            alt="App logo"
+                            className="w-15 h-15 rounded-full object-contain"
+                        />
+                    </div>
                     <div>
                         <h1 className="text-sm font-bold tracking-tight text-foreground">Connect All</h1>
                         <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">Rural Broadband Risk Visualizer</p>
@@ -60,7 +61,7 @@ export default function VisualizerPage() {
             </header>
 
             {/* Main Workspace */}
-            <main className="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden p-4 lg:p-6 gap-4 lg:gap-6 bg-muted/10">
+            <main className="flex-1 flex flex-col lg:flex-row p-4 lg:p-6 gap-4 lg:gap-6 bg-muted/10 overflow-hidden">
                 {/* Left Panel (Controls) */}
                 <SidebarLeft
                     selectedRegion={selectedRegion}
@@ -72,7 +73,7 @@ export default function VisualizerPage() {
                 {/* Center Map */}
                 <div className="flex-1 flex flex-col min-w-0 min-h-[50vh] lg:min-h-0 order-1 lg:order-none">
                     <div className="flex-1 relative rounded-xl overflow-hidden shadow-sm border border-border">
-                        <MapExplorer region={selectedRegion} analysis={analysis} />
+                        <MapExplorer region={selectedRegion} analysis={analysis} settings={settings} />
 
                         {/* Map Overlay Info */}
                         <div className="absolute top-4 left-4 z-[400] bg-popover/90 backdrop-blur px-4 py-2 rounded-lg border border-border shadow-sm pointer-events-none max-w-[calc(100%-2rem)]">
