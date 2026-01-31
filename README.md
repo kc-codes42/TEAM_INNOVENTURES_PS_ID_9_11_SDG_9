@@ -88,6 +88,48 @@ cd frontend
 npm install
 npm run dev
 ```
+## 🌐 Live Demo
+
+Try **Connect All** live and explore rural broadband risk visualization for India:
+
+<div align="center">
+  <a href="https://connect-all-rural-broadband.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Connect%20All-4285F4?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo">
+  </a>
+  <br><br>
+  <img src="frontend/public/demo-screenshot.png" alt="Connect All Dashboard Preview" width="800" />
+  <p><em>Interactive risk heatmap showing high-risk rural zones across Maharashtra</em></p>
+</div>
+
+**🔗 Direct Links:**
+- 🚀 [Production Demo](https://hackathon-three-dun.vercel.app/)
+
+---
+## 📊 Presentation Slides
+
+**Download the complete pitch deck:**
+
+<div align="center">
+  <a href="https://drive.google.com/file/d/YOUR_GDRIVE_LINK/view?usp=sharing" target="_blank">
+    <img src="https://img.shields.io/badge/Pitch%20Deck-Google%20Drive-4285F4?style=for-the-badge&logo=google-drive&logoColor=white" alt="Pitch Deck">
+  </a>
+  <br><br>
+  <p><strong>Connect All: Rural Broadband Risk Visualizer</strong></p>
+  <p><em>Built for CIH3.0 @ 2026 | SDG 9.11</em></p>
+</div>
+
+---
+
+**Key Slides Overview:**
+| Slide # | Title | Key Visual |
+|---------|-------|------------|
+| 1 | Problem: Digital Divide | India rural connectivity heatmap [web:1] |
+| 5 | Our Solution | Live demo GIF |
+| 12 | Tech Architecture | Mermaid diagram (above) |
+| 18 | Team & Roadmap | Team table + 2026 milestones |
+| 22 | Call to Action | SDG 9.11 impact metrics |
+
+**💡 Pro Tip:** Slides auto-embed video demo and live dashboard link for investor pitches.
 
 ---
 
