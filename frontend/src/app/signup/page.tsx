@@ -76,7 +76,7 @@ export default function SignupPage() {
               />
             </div>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight">SDG 9.11 Resilience Platform</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Connect All</h1>
         <p className="text-sm text-muted-foreground mt-1">Authorized Access Gateway</p>
       </div>
 

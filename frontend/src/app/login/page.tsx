@@ -65,7 +65,7 @@ export default function AuthGateway() {
               />
             </div>
                 </div>
-                <h1 className="text-2xl font-bold tracking-tight">SDG 9.11 Resilience Platform</h1>
+                <h1 className="text-2xl font-bold tracking-tight">Connect All</h1>
                 <p className="text-sm text-muted-foreground mt-1">Authorized Access Gateway</p>
                 <div className="mt-4 flex items-center gap-2 px-3 py-1 bg-secondary rounded-full border border-border">
                     <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
