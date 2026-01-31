@@ -1,138 +1,111 @@
-# Team Innoventures
+<div align="center">
+  <img src="frontend/public/fucklogo.png" alt="Connect All Logo" width="120" />
+  <h1>Connect All: Rural Broadband Risk Visualizer</h1>
+  <p><strong>Predicting resilience and bridging the digital divide using satellite intelligence.</strong></p>
 
-## Project Title
-Rural Broadband Risk Prediction
-
-## SDG Alignment
-**SDG 9 – Industry, Innovation and Infrastructure**  
-**PS ID: 9.11 - Engineer software for resilient broadband networks in rural areas 
-using satellite data.**
-
----
-
-## System Objective
-Predict rural broadband failure risk and recommend resilient network planning using satellite, terrain, weather, and population data.  
-The system is fully software-based, zero-cost, and uses only open datasets and free-tier tools.
+  [![Next.js](https://img.shields.io/badge/Next.js-16.1.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.100.0-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+  [![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+</div>
 
 ---
 
-## Problem Statement
-Rural broadband infrastructure planning suffers from lack of ground surveys, delayed failure detection, and reactive decision-making.  
-Terrain, weather volatility, and sparse population data are rarely combined into a single analytical system, resulting in fragile connectivity and inefficient investments.
+## 🌍 Project Vision
+
+**Connect All** is a zero-cost, software-powered decision platform designed to solve the critical challenge of rural broadband reliability. By integrating real-time satellite imagery, terrain data, and weather volatility, we predict infrastructure failure risks before they happen, enabling proactive network planning in the most remote regions of India.
+
+Aligned with **SDG 9.11 (Engineering Resilient Broadband)**, our mission is to ensure that no village is left behind due to preventable signal fade or suboptimal tower placement.
 
 ---
 
-## Proposed Solution
-We built a **digital twin–based decision platform** that models rural connectivity conditions using satellite data and machine learning.  
-The platform predicts failure risk, highlights vulnerable regions, and recommends optimized relay or hybrid network planning—without physical deployment or paid APIs.
+## ✨ Key Features
+
+- **🎯 Predictive Risk Scoring:** ML-driven analytics to identify high-risk zones based on terrain elevation and monsoon volatility.
+- **🗺️ Interactive Geospatial Dashboard:** High-fidelity maps powered by Leaflet.js visualizing regional resilience zones.
+- **⚡ Live Scenario Simulation:** Stress-test network performance against simulated weather events and peak user loads.
+- **🛠️ Smart Infrastructure Recommendations:** Algorithmic placement of relay nodes to maximize coverage with minimal terrain obstruction.
+- **📡 Satellite-Terrestrial Hybrid Synthesis:** Data-driven logic to flag optimal paths for hybrid backhaul systems.
 
 ---
 
-## System Architecture
-**Data Ingestion → Geospatial Processing → ML Risk Prediction → Optimization → Visualization**
+## 🏗️ System Architecture
+
+```mermaid
+graph TD
+    A[Satellite Data - SRTM/DEM] --> E[Geospatial Engine]
+    B[Demographics - WorldPop] --> E
+    C[Weather - NOAA] --> E
+    D[Connectivity Data - OpenCellID] --> E
+    E --> F[ML Risk Model - Scikit-Learn]
+    F --> G[Optimization Engine]
+    G --> H[FastAPI Backend]
+    H --> I[Next.js Frontend]
+    I --> J[Interactive Dashboard]
+```
 
 ---
 
-## Data Sources (Open & Free)
-- **NASA SRTM / Copernicus DEM** – Terrain and elevation modeling
-- **WorldPop** – Population density prioritization
-- **NOAA Open Weather Data** – Weather volatility and signal stress
-- **OpenCellID (sample/free data)** – Simulated cellular coverage patterns
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework:** Next.js (App Router)
+- **Maps:** Leaflet.js
+- **Animations:** Framer Motion
+- **UI Components:** Radix UI + Tailwind CSS
+- **State Management:** React Hooks + UseMemo
+
+### Backend
+- **Framework:** FastAPI
+- **Data Science:** GeoPandas, NumPy, SciPy
+- **ML Models:** Scikit-Learn (Random Forest, Gradient Boosting)
+- **Raster Processing:** Rasterio
 
 ---
 
-## Data Processing & Geospatial Layer
-- **Python** – Core data and ML pipeline
-- **GeoPandas** – Spatial joins and regional aggregation
-- **Rasterio** – Satellite raster processing
-- **Shapely** – Distance, obstruction, and geometry analysis
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.9+
+- Node.js 18+
+
+### 1. Backend Setup
+```bash
+cd backend
+python -m venv venv
+# On Windows
+.\venv\Scripts\activate 
+# On Linux/macOS
+source venv/bin/activate
+
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ---
 
-## Machine Learning Layer
-- **Scikit-learn**
-  - Random Forest (baseline, interpretable)
-  - Gradient Boosting (higher accuracy)
+## 🤝 Team Innoventures
 
-### Engineered Features
-- Terrain elevation variance
-- Distance from nearest tower
-- Weather volatility index
-- Population density
-- Simulated historical outage likelihood
-
-### Outputs
-- **Connectivity Risk Score (0–100)**
-- **Binary Classification:** Stable / At-risk
+| Member | Role |
+| :--- | :--- |
+| **Athar Shaikh** | Lead Developer |
+| **Sujal Belkhode** | ML Engineer |
+| **Kaustubh Chauhan** | Frontend Arch |
+| **Kaifoddin Kazi** | Data Analyst |
 
 ---
 
-## Optimization & Recommendation Engine
-- **NumPy + SciPy**
-- Identifies high-risk zones
-- Simulates relay or tower placement
-- Minimizes:
-  - Coverage gaps
-  - Cost proxy (distance + terrain difficulty)
+## 📜 License
 
-### Outputs
-- Suggested relay locations
-- Backup routing paths
-- Satellite–terrestrial hybrid flags
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
----
-
-## Backend
-- **FastAPI**
-- Handles:
-  - Data pipeline orchestration
-  - ML inference APIs
-  - Scenario simulation endpoints
-
----
-
-## Frontend & Visualization
-- **Next.js** – Dashboard and UI
-- **Leaflet.js** – Interactive maps (no API keys)
-- **Chart.js** – Risk trends and analytics
-
----
-
-## Deployment (Zero Cost)
-- **Frontend:** Vercel (free tier)
-- **Backend:** Render / Railway (free tier)
-- **Storage:** Local CSV / JSON  
-  Optional: Supabase free tier for persistence
-
----
-
-## Demo Capabilities
-1. Rural map with broadband risk heatmap
-2. Village-level risk score and failure explanation
-3. Weather stress simulation
-4. Relay placement toggle with risk reduction
-5. Infrastructure planning comparison view
-
----
-
-## Why This Works in a Hackathon
-- No hardware assumptions
-- No paid APIs or licenses
-- Uses real satellite and demographic data
-- ML is explainable and defensible
-- Visually strong and technically credible
-- Direct SDG 9.11 relevance
-- hello
-
----
-
-## Team Innoventures
-- **Athar Shaikh**
-- **Sujal Belkhode**
-- **Kaustubh Cahuhan**
-- **Kaifoddin Kazi**
-
----
-
-## License
-MIT License
+<div align="center">
+  <p>Built for CIH3.0 @ 2026</p>
+</div>
